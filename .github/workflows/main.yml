@@ -31,4 +31,4 @@ jobs:
           cmake --build .
 
       - name: Run unit tests
-        run: ./bin/unit_tests
+        run: ../bin/unit_tests
