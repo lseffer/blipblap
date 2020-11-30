@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(sources "char_stream_test.cpp")
+set(sources "char_stream_test.cpp" "token_stream_test.cpp")
 
 add_executable(unit_tests ${sources})
 

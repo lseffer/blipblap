@@ -1,18 +1,28 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
 #include "char_stream.hpp"
 
+enum TokenType {
+  PUNCTUATION,
+  NUMBER,
+  STRING,
+  KEYWORD,
+  VARIABLE,
+  OPERATION,
+};
+
 struct Token {
-  std::string type;
+  TokenType type;
   std::string value;
 };
 
 class TokenStream {
  public:
-  TokenStream(CharacterStream cstream) : m_cstream{cstream} {};
+  TokenStream(std::string program) : m_cstream{CharacterStream(program)} {};
   bool is_whitespace(char in) { return in == ' ' || in == '\t' || in == '\n'; }
   void skip_whitespace();
   void skip_comment();

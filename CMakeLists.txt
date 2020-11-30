@@ -9,7 +9,7 @@ add_subdirectory(inputstream)
 add_subdirectory(test)
 add_subdirectory(external/Catch2)
 
-set(sources "src/main.cpp")
+set(sources "main/main.cpp")
 add_executable(blipblap ${sources})
 
 target_link_libraries(blipblap libistream)

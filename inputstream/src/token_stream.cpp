@@ -13,9 +13,11 @@ Token TokenStream::read_next() {
   auto next = m_cstream.next();
   if (next == '#') {
     skip_comment();
+  } else if (next == '"') {
+    return read_string();
   }
   Token def;
-  def.type = "asd";
+  def.type = TokenType::KEYWORD;
   def.value = "asd";
   return def;
 }
@@ -33,4 +35,21 @@ void TokenStream::skip_comment() {
   if (m_cstream.peek() == '\n') {
     m_cstream.next();
   }
+}
+
+Token TokenStream::read_string() {
+  Token result;
+  result.type = TokenType::STRING;
+  std::string value = "";
+  while (!m_cstream.eof()) {
+    auto next = m_cstream.next();
+    if (next == '"') {
+      result.value = value;
+      return result;
+    } else {
+      value += next;
+    }
+  }
+  result.value = value;
+  return result;
 }
