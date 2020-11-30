@@ -39,3 +39,21 @@ TEST_CASE("Reading a string works correctly") {
   REQUIRE(result[0].type == 2);
   REQUIRE(result[0].value == "coolstring");
 }
+
+TEST_CASE("Reading a number works correctly") {
+  std::string tester = "123";
+  auto tobj = TokenStream(tester);
+  auto result = tobj.read();
+  REQUIRE(result[0].type == 1);
+  REQUIRE(result[0].value == "123");
+}
+
+TEST_CASE("Reading a number and a string works correctly") {
+  std::string tester = "123 \"asd\"";
+  auto tobj = TokenStream(tester);
+  auto result = tobj.read();
+  REQUIRE(result[0].type == 1);
+  REQUIRE(result[0].value == "123");
+  REQUIRE(result[1].type == 2);
+  REQUIRE(result[1].value == "asd");
+}
