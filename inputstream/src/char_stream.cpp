@@ -1,13 +1,13 @@
 #include "char_stream.hpp"
 
-char CharacterStream::peek() { return this->program[this->position + 1]; }
+char CharacterStream::peek() { return m_program[m_position + 1]; }
 
-char CharacterStream::current() { return this->program[this->position]; }
+char CharacterStream::current() { return m_program[m_position]; }
 
 char CharacterStream::next() {
-  auto result = this->program[this->position];
-  position++;
+  auto result = m_program[m_position];
+  m_position++;
   return result;
 }
 
-bool CharacterStream::eof() { return this->position + 1 > this->program.size(); }
+bool CharacterStream::eof() { return m_position + 1 > m_program.size(); }

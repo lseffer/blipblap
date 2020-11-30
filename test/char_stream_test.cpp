@@ -34,7 +34,7 @@ TEST_CASE("skip whitespace correctly skips until next char") {
   auto cobj = CharacterStream(input_with_expected.input);
   auto tobj = TokenStream(cobj);
   tobj.skip_whitespace();
-  REQUIRE(tobj.cstream.next() == input_with_expected.expected);
+  REQUIRE(tobj.m_cstream.next() == input_with_expected.expected);
 }
 
 TEST_CASE("skip comment correctly skips one line") {
@@ -42,5 +42,5 @@ TEST_CASE("skip comment correctly skips one line") {
   auto cobj = CharacterStream(tester);
   auto tobj = TokenStream(cobj);
   tobj.skip_comment();
-  REQUIRE(tobj.cstream.peek() == 'c');
+  REQUIRE(tobj.m_cstream.peek() == 'c');
 }

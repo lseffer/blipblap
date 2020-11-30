@@ -28,14 +28,12 @@ jobs:
         with:
           submodules: recursive
 
-      # Runs a single command using the runners shell
-      - name: Clear previous cache
-        run: rm -rf build
+      - name: Build project
+        run: |
+          mkdir -p build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Debug ..
+          cmake --build .
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: ./build-all.sh
-
-      # Runs a set of commands using the runners shell
       - name: Run unit tests
         run: ./bin/unit_tests

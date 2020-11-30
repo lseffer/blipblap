@@ -3,14 +3,14 @@
 #include <string>
 
 class CharacterStream {
- private:
-  uint32_t position = 0;
-  std::string program;
-
  public:
-  CharacterStream(std::string program) : program{program} {};
+  CharacterStream(std::string program) : m_program{program} {};
   char current();
   char next();
   char peek();
   bool eof();
+
+ private:
+  uint32_t m_position = 0;
+  std::string m_program;
 };
