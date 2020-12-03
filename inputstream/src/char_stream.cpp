@@ -6,7 +6,7 @@ char CharacterStream::current() { return m_program[m_position]; }
 
 char CharacterStream::next() {
   auto result = m_program[m_position];
-  m_position++;
+  ++m_position;
   return result;
 }
 

@@ -7,6 +7,10 @@
 
 #include "char_stream.hpp"
 
+const std::vector<std::string> KEYWORDS = {"func", "lambda"};
+
+bool matches_keyword(std::string value, const std::vector<std::string> &keywords = KEYWORDS);
+
 enum TokenType {
   PUNCTUATION,
   NUMBER,
@@ -24,27 +28,25 @@ struct Token {
 class TokenStream {
  public:
   TokenStream(std::string program) : m_cstream{CharacterStream(program)} {};
-  bool is_one_of(char in, std::string chars) {
-    for (auto compare : chars) {
-      if (compare == in) {
-        return true;
-      }
-    }
-    return false;
-  }
-  bool is_comment(char in) { return is_one_of(in, "#"); }
-  bool is_string(char in) { return is_one_of(in, "\""); }
-  bool is_whitespace(char in) { return is_one_of(in, "\t\n "); }
-  bool is_number(char in) { return is_one_of(in, "0123456789"); }
   void skip_whitespace();
   void skip_comment();
-  Token read_number(char in);
+  Token read_number();
   Token read_string();
-  Token read_op();
+  Token read_operation();
+  Token read_keyword_variable();
+  Token read_punctuation();
   std::vector<Token> read();
   CharacterStream m_cstream;
 
   Token read_next();
+  static bool is_one_of(char in, std::string chars);
+  static bool is_comment(char in);
+  static bool is_string(char in);
+  static bool is_whitespace(char in);
+  static bool is_number(char in);
+  static bool is_operation(char in);
+  static bool is_punctuation(char in);
+  static bool is_keyword_or_variable(char in);
 
  private:
 };
