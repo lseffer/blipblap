@@ -1,7 +1,7 @@
 #include "token_stream.hpp"
 
-bool matches_keyword(std::string value, const std::vector<std::string> &keywords) {
-  return std::find(keywords.begin(), keywords.end(), value) != keywords.end();
+bool matches_keyword(std::string value) {
+  return std::find(KEYWORDS.begin(), KEYWORDS.end(), value) != KEYWORDS.end();
 }
 
 bool TokenStream::is_one_of(char in, std::string chars) {
@@ -102,7 +102,7 @@ Token TokenStream::read_number() {
 
 Token TokenStream::read_operation() {
   Token result;
-  result.type = TokenType::OPERATION;
+  result.type = TokenType::OPERATOR;
   std::string value;
   while (!m_cstream.eof()) {
     auto next = m_cstream.peek();

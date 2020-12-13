@@ -7,9 +7,9 @@
 
 #include "char_stream.hpp"
 
-const std::vector<std::string> KEYWORDS = {"func", "lambda"};
+inline const std::array<std::string_view, 2> KEYWORDS = {"func", "lambda"};
 
-bool matches_keyword(std::string value, const std::vector<std::string> &keywords = KEYWORDS);
+bool matches_keyword(std::string value);
 
 enum TokenType {
   PUNCTUATION,
@@ -17,7 +17,7 @@ enum TokenType {
   STRING,
   KEYWORD,
   VARIABLE,
-  OPERATION,
+  OPERATOR,
 };
 
 struct Token {
